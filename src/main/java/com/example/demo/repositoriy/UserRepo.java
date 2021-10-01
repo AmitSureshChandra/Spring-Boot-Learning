@@ -2,8 +2,8 @@ package com.example.demo.repositoriy;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.demo.model.Task;
+import com.example.demo.model.User;
 
-public interface TaskRepo extends CrudRepository<Task, Integer> {
+public interface UserRepo extends CrudRepository<User, Long>  {
 
 }

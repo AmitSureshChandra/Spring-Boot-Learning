@@ -1,8 +1,8 @@
-package com.example.demo.repositories;
+package com.example.demo.repositoriy;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.demo.models.Alien;
+import com.example.demo.model.Alien;
 
 public interface AlienRepo extends CrudRepository<Alien, Integer> {
 	

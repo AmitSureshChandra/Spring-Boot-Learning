@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.exceptions.TaskNotFoundException;
-import com.example.demo.models.Task;
-import com.example.demo.repositories.TaskRepo;
+import com.example.demo.exception.TaskNotFoundException;
+import com.example.demo.model.Task;
+import com.example.demo.repositoriy.TaskRepo;
 
 @RestController
 public class TaskConroller {

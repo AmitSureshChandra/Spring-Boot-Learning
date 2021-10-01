@@ -1,4 +1,4 @@
-package com.example.demo.exceptions;
+package com.example.demo.exception;
 
 @SuppressWarnings("serial")
 public class TaskNotFoundException extends RuntimeException {

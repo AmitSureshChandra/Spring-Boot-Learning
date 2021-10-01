@@ -1,12 +1,17 @@
-package com.example.demo.models;
+package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "aliens")
 public class Alien {
 	@Id
 	private int id;
+	
+	@Column()
 	private String name;
 	public int getId() {
 		return id;

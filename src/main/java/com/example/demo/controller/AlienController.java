@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.models.Alien;
-import com.example.demo.repositories.AlienRepo;
+import com.example.demo.model.Alien;
+import com.example.demo.repositoriy.AlienRepo;
 
 @Controller
 public class AlienController {
@@ -23,14 +23,14 @@ public class AlienController {
 	}
 	
 	
-	@RequestMapping("/alien")
-	@ResponseBody
-	public String saveAlien(Alien alien) {
-		alien.setName("Amit");
-		alien.setId(1);
-		alienRepo.save(alien);
-		
-		return alien.toString();
-		
-	}
+//	@RequestMapping("/alien")
+//	@ResponseBody
+//	public String saveAlien(Alien alien) {
+//		alien.setName("Amit");
+//		alien.setId(1);
+//		alienRepo.save(alien);
+//		
+//		return alien.toString();
+//		
+//	}
 }
