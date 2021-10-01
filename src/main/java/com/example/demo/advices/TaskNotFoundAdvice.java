@@ -1,10 +1,12 @@
-package com.example.demo;
+package com.example.demo.advices;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.example.demo.exceptions.TaskNotFoundException;
 
 @ControllerAdvice
 public class TaskNotFoundAdvice {
