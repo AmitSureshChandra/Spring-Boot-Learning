@@ -26,18 +26,26 @@ public class TaskConroller {
 		return task;
 	}
 	
-	@GetMapping("tasks/{task}")
+	@GetMapping("tasks/{id}")
 	public Task data(@PathVariable Integer id) {
-		return taskRepo.findById(id).get();
+		return taskRepo.findById(id).orElseThrow(() -> {
+			return new TaskNotFoundException(id);
+		});
 	}
 	
-	@PutMapping("/tasks/{task}")
-	public Task update(@RequestBody Task task) {
-		taskRepo.save(task);
-		return task;
+	@PutMapping("/tasks/{id}")
+	public Task update(@RequestBody Task newTask, @PathVariable Integer id) {
+		return taskRepo.findById(id).map(oldTask -> {
+			oldTask.setTitle(newTask.getTitle());
+			oldTask.setStatus(newTask.getStatus());
+			return taskRepo.save(oldTask);
+		}).orElseGet(() -> {
+			newTask.setId(id);
+			return taskRepo.save(newTask);
+		});
 	}
 	
-	@DeleteMapping("tasks/{task}")
+	@DeleteMapping("tasks/{id}")
 	public void delete(@PathVariable Integer id) {
 		taskRepo.deleteById(id);
 	}

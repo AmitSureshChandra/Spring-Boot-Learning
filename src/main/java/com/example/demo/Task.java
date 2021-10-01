@@ -2,13 +2,15 @@ package com.example.demo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Task {
 	
 	@Id
-	private @GeneratedValue int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private  int id;
 	private String title;
 	private Boolean status;
 	
@@ -23,6 +25,10 @@ public class Task {
 	}
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+	public void setId(Integer id2) {
+		// TODO Auto-generated method stub
+		id = id2;
 	}
 	
 	
