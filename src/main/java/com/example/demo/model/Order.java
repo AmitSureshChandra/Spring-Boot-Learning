@@ -47,7 +47,5 @@ class Order {
 				inverseJoinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id")
 	)
 	private List<Item> items;
-//	
-
 
 }
