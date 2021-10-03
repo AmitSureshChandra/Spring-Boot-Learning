@@ -8,49 +8,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.exception.TaskNotFoundException;
+import javax.servlet.http.HttpServletResponse;
 import com.example.demo.model.Task;
-import com.example.demo.repositoriy.TaskRepo;
+import com.example.demo.service.TaskService;
 
 @RestController
 public class TaskConroller {
 
 	@Autowired
-	private TaskRepo taskRepo;
+	private TaskService taskService;
 	
 	@GetMapping("/tasks")
 	public Iterable<Task> index(){
-		return taskRepo.findAll();
+		return taskService.findAll();
 	}
 	
 	@PostMapping("/tasks")
 	public Task save(@RequestBody Task task) {
-		taskRepo.save(task);
-		return task;
+		return taskService.save(task);
 	}
 	
 	@GetMapping("tasks/{id}")
-	public Task data(@PathVariable Integer id) {
-		return taskRepo.findById(id).orElseThrow(() -> {
-			return new TaskNotFoundException(id);
-		});
+	public Task data(@PathVariable Integer id){
+		return taskService.getOne(id);
 	}
 	
 	@PutMapping("/tasks/{id}")
-	public Task update(@RequestBody Task newTask, @PathVariable Integer id) {
-		return taskRepo.findById(id).map(oldTask -> {
-			oldTask.setTitle(newTask.getTitle());
-			oldTask.setStatus(newTask.getStatus());
-			return taskRepo.save(oldTask);
-		}).orElseGet(() -> {
-			newTask.setId(id);
-			return taskRepo.save(newTask);
-		});
+	public Task update(@RequestBody Task newTask, @PathVariable Integer id){
+		return taskService.update(newTask, id);
 	}
 	
 	@DeleteMapping("tasks/{id}")
-	public void delete(@PathVariable Integer id) {
-		taskRepo.deleteById(id);
+	public void delete(@PathVariable Integer id, HttpServletResponse response) {
+		taskService.delete(id);
 	}
 }

@@ -19,7 +19,7 @@ public class AlienController {
 	@RequestMapping("/")
 	@ResponseBody
 	public String home() {
-		return "home";
+		return "home2";
 	}
 	
 	
