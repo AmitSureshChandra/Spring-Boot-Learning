@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,10 +11,12 @@ import javax.persistence.Table;
 @Table(name = "aliens")
 public class Alien {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column()
 	private String name;
+	private String planet;
+
 	public int getId() {
 		return id;
 	}
@@ -25,4 +29,11 @@ public class Alien {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getPlanet() {
+		return this.planet;
+	}
+	public void setPlanet(String planet) {
+		this.planet = planet;
+	}
+
 }
