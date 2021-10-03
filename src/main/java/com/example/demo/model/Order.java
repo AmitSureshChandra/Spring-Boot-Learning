@@ -48,4 +48,12 @@ public class Order {
 	)
 	private List<Item> items;
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
 }
