@@ -5,14 +5,16 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.example.demo.exception.TaskNotFoundException;
+
+import com.example.demo.exception.OrderBookedException;
 
 @ControllerAdvice
-public class TaskNotFoundAdvice {
+public class OrderBookedAdvice {
 	@ResponseBody
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	String taskNotFoundException(TaskNotFoundException exception ) {
+	String orderAlreadyPlaced(OrderBookedException exception) {
 		return exception.getMessage();
 	}
+
 }

@@ -17,27 +17,27 @@ public class TaskConroller {
 
 	@Autowired
 	private TaskService taskService;
-	
+
 	@GetMapping("/tasks")
-	public Iterable<Task> index(){
+	public Iterable<Task> index() {
 		return taskService.findAll();
 	}
-	
+
 	@PostMapping("/tasks")
 	public Task save(@RequestBody Task task) {
 		return taskService.save(task);
 	}
-	
+
 	@GetMapping("tasks/{id}")
-	public Task data(@PathVariable Integer id){
-		return taskService.getOne(id);
+	public Task data(@PathVariable Integer id) {
+		return taskService.getTask(id);
 	}
-	
+
 	@PutMapping("/tasks/{id}")
-	public Task update(@RequestBody Task newTask, @PathVariable Integer id){
+	public Task update(@RequestBody Task newTask, @PathVariable Integer id) {
 		return taskService.update(newTask, id);
 	}
-	
+
 	@DeleteMapping("tasks/{id}")
 	public void delete(@PathVariable Integer id, HttpServletResponse response) {
 		taskService.delete(id);

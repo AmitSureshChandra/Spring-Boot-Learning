@@ -17,30 +17,25 @@ public class TaskService {
         return taskRepo.findAll();
     }
 
-    public Task getOne(Integer id){
+    public Task getTask(Integer id) {
         return taskRepo.findById(id).orElseThrow(() -> {
-			return new TaskNotFoundException(id);
-		});
+            return new TaskNotFoundException(id);
+        });
     }
 
     public Task save(Task task) {
         return taskRepo.save(task);
     }
 
-    public Task update(Task newTask, Integer id){
-        return taskRepo.findById(id).map(oldTask -> {
-			oldTask.setTitle(newTask.getTitle());
-			oldTask.setStatus(newTask.getStatus());
-			return taskRepo.save(oldTask);
-		}).orElseThrow(() -> {
-			return new TaskNotFoundException(id);
-		});
+    public Task update(Task newTask, Integer id) {
+        Task oldTask = getTask(id);
+        oldTask.setTitle(newTask.getTitle());
+        oldTask.setStatus(newTask.getStatus());
+        return taskRepo.save(oldTask);
     }
 
     public void delete(Integer id) {
-        taskRepo.findById(id).orElseThrow(() -> {
-            return new TaskNotFoundException(id);
-        });
+        getTask(id);
         taskRepo.deleteById(id);
     }
 }
