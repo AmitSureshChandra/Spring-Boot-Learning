@@ -59,5 +59,11 @@ public class OrderController {
 			throw new OrderBookedException(order_id);
 		}
 		return orderService.bookOrder(order_id);
+
+	}
+
+	@DeleteMapping("/orders/{order_id}")
+	public void removeOrder(@PathVariable Long order_id) {
+		orderService.removeOrder(order_id);
 	}
 }

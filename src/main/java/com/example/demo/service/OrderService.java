@@ -145,4 +145,8 @@ public class OrderService {
     public Iterable<Order> findAll() {
         return orderRepository.findAll();
     }
+
+    public void removeOrder(Long order_id){
+        orderRepository.delete(getOrder(order_id));
+    }
 }
