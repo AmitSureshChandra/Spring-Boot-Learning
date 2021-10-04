@@ -6,26 +6,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.UserDTO;
 import com.example.demo.model.User;
-import com.example.demo.repositoriy.UserRepo;
+import com.example.demo.service.UserService;
 
 @RestController
 public class UserController {
 	
 	@Autowired
-	private UserRepo userRepo;
+	UserService userService;
 	
 	@GetMapping("/users")
 	public Iterable<User> index(){
-		return userRepo.findAll();
+		return userService.findAll();
 	}
 	
 	@PostMapping("/users")
 	public User save(@RequestBody User user) {
-		
-//		validate user data
-		
-		userRepo.save(user);
+		userService.save(user);
 		return user;
 	}
 }
