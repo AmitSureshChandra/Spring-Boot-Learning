@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Item;
-import com.example.demo.service.ItemService;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.Item;
+import com.example.demo.service.ItemService;
 
 @RestController
 public class ItemController {
@@ -35,7 +37,10 @@ public class ItemController {
 	}
 
 	@GetMapping("/items")
-	public Iterable<Item> index() {
+	public Iterable<Item> index(HttpServletRequest request) {
+
+		System.out.println(request.getParameter("search"));
+		System.out.println(request.getAttribute("search"));
 		return itemService.findAll();
 	}
 
